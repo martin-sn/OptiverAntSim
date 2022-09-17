@@ -1,3 +1,13 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Code
+```{r}
 SimAnt <- function(nSimulations, MaxMoves, Question){
   
   PossibleMoves <- c("Up","Down", "Left", "Right")
@@ -20,7 +30,8 @@ SimAnt <- function(nSimulations, MaxMoves, Question){
       
       if (NumberMoves == MaxMoves){
         Diverge <- TRUE
-        print(paste("Reached", MaxMoves, "moves, box is likely not bounded and avg moves diverges", sep=" "))
+        print(paste("Reached", MaxMoves, 
+                    "moves, box is likely not bounded and avg moves diverges", sep=" "))
         break
       }
     }
@@ -33,7 +44,6 @@ SimAnt <- function(nSimulations, MaxMoves, Question){
   
   if (!Diverge){
     print(paste("Took",TotalMoves/nSimulations,"on average", sep=" "))
-    return(TotalMoves/nSimulations)
   }
 }
 
@@ -57,13 +67,27 @@ FoundFood <- function(Coords, Question){
   }
 }
 
+```
 
-# Question 1 
+### Question 1 
+```{r}
 SimAnt(nSimulations = 10000, MaxMoves = 10000, Question = 1)
+```
 
-# Question 2 
+Converges to $\mathbf{4.5}$ as $n \to \infty$
+
+### Question 2 
+```{r}
 SimAnt(nSimulations = 10000, MaxMoves = 10000, Question = 2)
+```
 
-# Question 3 
+\textbf{Diverges} as the area is not bounded
+
+
+### Question 3 
+```{r}
 SimAnt(nSimulations = 10000, MaxMoves = 10000, Question = 3)
+```
+
+\textbf{Diverges} as the area is not bounded
 
